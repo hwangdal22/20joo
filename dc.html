@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII 테스트</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: monospace;
+    }
+    #ascii {
+      font-size: 14px;
+      line-height: 14px;
+      text-align: center;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+<pre id="ascii">로딩 중...</pre>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const frames = [
+`(ง •̀_•́)ง`,
+`(ง •̀_•́)ง  댄스!`,
+`(ง •̀_•́)ง   댄스!!`,
+`(ง •̀_•́)ง    댄스!!!`,
+`(ง •̀_•́)ง     댄스!!!!`
+    ];
+    let idx = 0;
+    const ascii = document.getElementById("ascii");
+    function animate() {
+      ascii.innerText = frames[idx];
+      idx = (idx + 1) % frames.length;
+    }
+    setInterval(animate, 200);
+  });
+</script>
+</body>
+</html>
