@@ -46,7 +46,6 @@
 <script>
   const consoleEl = document.getElementById("console");
 
-  // Content
   const androidLine = "Do androids dream of electric sheep?";
   const asciiArtLines = `                                           .:=+++--.::.:==-++=-::.                                  
                                   ...-=-:. =***###**##*#########*-:...                              
@@ -108,13 +107,13 @@
   const asciiDelays = [569,541,515,490,466,443,421,401,381,363,345,328,312,297,282,268,255,243,231,220,209,199,189,180,171,163,155,147,140,133,127,120,114,109,104,98,94,89,85,81,77,73,69,66,63,60,57,54,51,49,46,44,42,40,38,36,34];
   const celebrationLines = ["IN CELEBRATION OF", "20 YEARS OF", "OrganBar"];
   const futureLine = "THE FUTURE WAS ALWAYS ANALOG";
+  const futureLineKr = "미래는 언제나 아날로그였다";
   const finalDate = "7월 xx일";
 
   const timings = {
     dots: 3000,
     android: 5000,
-    celebration: 5000,
-    future: 5000
+    celebration: 5000
   };
 
   function playDotsScene() {
@@ -192,24 +191,45 @@
 
   function playFutureScene() {
     consoleEl.innerHTML = "";
-    const lineEl = document.createElement("div");
-    lineEl.classList.add("large");
-    consoleEl.appendChild(lineEl);
+    const engEl = document.createElement("div");
+    engEl.classList.add("large");
+    const krEl = document.createElement("div");
+    krEl.classList.add("large");
+    consoleEl.appendChild(engEl);
+    consoleEl.appendChild(krEl);
+
     let i = 0;
-    function typeChar() {
+    let j = 0;
+
+    function typeEngChar() {
       if (i < futureLine.length) {
-        lineEl.textContent += futureLine[i++];
+        engEl.textContent += futureLine[i++];
         const delay = 50 + Math.random() * 100;
-        setTimeout(typeChar, delay);
-      } else {
-        lineEl.classList.add("flash");
-        setTimeout(() => {
-          consoleEl.innerHTML = "";
-          playFinalScene();
-        }, 1000);
+        setTimeout(typeEngChar, delay);
       }
     }
-    typeChar();
+
+    function typeKrChar() {
+      if (j < futureLineKr.length) {
+        krEl.textContent += futureLineKr[j++];
+        const delay = 70 + Math.random() * 100;
+        setTimeout(typeKrChar, delay);
+      }
+    }
+
+    typeEngChar();
+    setTimeout(() => {
+      typeKrChar();
+    }, 960);
+
+    setTimeout(() => {
+      engEl.classList.add("flash");
+      krEl.classList.add("flash");
+      setTimeout(() => {
+        consoleEl.innerHTML = "";
+        playFinalScene();
+      }, 1000);
+    }, 10000);
   }
 
   function playFinalScene() {
