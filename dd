@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ASCII 파도</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: white;
+      color: #152484;
+      font-family: monospace;
+      white-space: pre;
+      font-size: 14px;
+      line-height: 14px;
+      overflow: hidden;
+    }
+    #wave {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow-x: scroll;
+    }
+    pre {
+      margin: 0;
+      padding: 10px;
+      min-width: 1000px;
+    }
+  </style>
+</head>
+<body>
+<pre id="wave"></pre>
+<script>
+  const wave = document.getElementById("wave");
+  const rows = 30;
+  const cols = 100;
+  const chars = [" ", ".", "-", "~", "=", "*", "#"];
+  
+  function getChar(y, x, tick) {
+    let waveHeight = Math.sin((x + tick) / 5) * 2 + Math.cos((y + tick) / 5);
+    let index = Math.floor((waveHeight + 3) * (chars.length - 1) / 6);
+    return chars[index];
+  }
+
+  let tick = 0;
+  function generateWave() {
+    let content = "";
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        content += getChar(y, x, tick);
+      }
+      content += "\n";
+    }
+    wave.textContent = content;
+    tick += 1;
+    requestAnimationFrame(generateWave);
+  }
+
+  // 첫 프레임 강제 출력
+  generateWave();
+</script>
+</body>
+</html>
