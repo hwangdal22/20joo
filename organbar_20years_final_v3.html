@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OrganBar 20 Years</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF7F;
+      font-family: monospace;
+      white-space: pre;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    #console {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .center {
+      text-align: center;
+    }
+    .large {
+      font-size: 24px;
+    }
+    .ascii {
+      font-size: 12px;
+      line-height: 1.1em;
+    }
+    .flash {
+      animation: flash 0.2s 2 alternate;
+    }
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+<div id="console" class="center"></div>
+
+<script>
+  const consoleEl = document.getElementById("console");
+
+  // Content
+  const androidLine = "Do androids dream of electric sheep?";
+  const asciiArtLines = `                                           .:=+++--.::.:==-++=-::.                                  
+                                  ...-=-:. =***###**##*#########*-:...                              
+                              .:=++******=:+#*+*+=+#########*####*#**+=:.                           
+                             .+#*++==-:*=--*=***:=+########*=*#*#+++#%##+-:.                        
+                        .:.  =##*=**==+==+--+*+++#####**###**##*###=+%##+=-:.                       
+                      .+*#*=:+###%#=+#*=*=**####****##++*#########**+=#**###+:.                     
+                     .*#*######*#%#=*#####%%####*#+:==+#***#+*#######--+==*####-                    
+                   ::=##**##########*#%%%##%%%%%#*#+==*##*###*#*++###+-=+*+=***===:..               
+                .=+*#####*%%%%#**=+*=#=*+=#**%++#%*+**#++%**####**###*+*+**=*######+-.              
+              .-*#+###+##%%%######++*#%#=#%-+%%#%%*++=*++#****#####*#*###########+**+*-.            
+            .-+++*+**-=###%##*++#%%%%%%%%%#**+*##%%##**#+*#+*##########****######=-+#*++=:..        
+            =***+****+#####+--*=*%%##%%*+*%##+*%%+**#%###%#:+%%**#***#+***#+*#**#+******#***:       
+            -*++*****##*****+**######%+*+*#-=*#%%#=*#+*#+**=###+==*##=+**+####*=+:-*###*+++==:      
+           .:--+***#*+*#*++-:+##+#%#*+*#+:##**%%%%%%#.==*+-*######=*#++==*##+##*+-:.=+**-:===.      
+            .-+***++++#*+=####*=+##**+=*=+##*=#%%%*##:*+#%#**+##*++*+####*###**+##+:-+-#**##*=.     
+           .=###++=+#=***#############=- --+#*#*#%%%#+#**++**+-.-+*#*###%%####*-=--: :=+++##::.     
+           .+#**#=-+#*#########+*###+#**+*+:*-=-=#+*###*#-=:+=:=#%#############=+*#+=.    :-.       
+          . .==+#####%%%%%###+*=-*####+#*++=-*-+.#=+++##*=##**#**###+#*#####%%%####+*:              
+      :+-*+...+###*###+***##*+*#**####*#+-+*=*++-**#=#=*+=*+=+*+-**++#**+###%#*##+*+**-             
+     .=**#*=*=+##=:#%=.+=-*#*###+#%#####+==##*#*#%**##:-##+-=+..=+***###=+++#=:=***: ::..           
+  .:=+++=-*+-=.+*##%%**=+=#**#=**###++++*####*++####%*-**-..+==++=*#*##*#=...--...+++:-#*:-=-:.     
+ .=*#*#+=....::+#%%#%%#=*=*#+=-=--==++***######%#=######- .+--+--=**##*+*-+:.:=*+-*##+-##+#####-.   
+.-*#*+*+.:--.:*=*++#+-*#+=#*-+*##=+******+###++++-*#####+-*#+=:=+**+**#**++***#*+*#######*#*####:   
+.+#+.:--=++*-=***+-:=+###*#+=%#####*####+++#=.-**#####+=*###**+#*=***+*#+*#####+=#####*-+**.===#=.  
+.==: .:+*++**=+=+===+##****######%%%=:=+. .+*==+*+=##*.:**++*+#####*+=#+*#++*************:-.-+:=#*: 
+..  :*-==:=.-**+-:+=**+=:**######**+- :+*+. +**=*#*##+=*#***###**####*##*#=..--+*********=+****-:++.
+    .-. .:-:-****+*+*##+**######=++=*++#*#*+-#*:*#%###*=+=*##=+##+==*######-   .::####+*********::: 
+        -#**+---=-*####+===##+=#*#####++*#%#*#= .+%%%*=**####=*###++###--##*--...:+==*#*--+*=+*+++. 
+       .*##*+*++#*=-:*###*-=+-=*******-:+###***..#%#%#*-###########***=..+#*-=+:++*==-+*#==++..-++. 
+       .+#*+*##*+#+=*+=+*#+==-********+::*#+-*#=.#%%%#-=*%###*#*#++***+=#**=-...=**==.-*#*+-:  .=.  
+       ::-+*###++#+*#+++*#*=:--:+-*=*+===****+**-###%**#-+#*#+:-#-=**##*++**:..-=.:-+..=+-=*.   .   
+       . .:+*+-:=+-:===:-*:.    ::=.. .:=+##==+*******#****=*+-*++==****+-=#+:+**+..:. .: .-:       
+           :+:  .:: .   .:               .-=:.:+####--+#++=:--+=##=#*-:-:**=: .-=***:.              
+            ..                              ::--###*::+--.. .-.--:.=*:  .-:   .-**+#*.              
+                                             .:+*****+:     .  .    ..   ..    .::=+:.              
+                                               -****+.                            ::                
+                                               :####-                                               
+                                               -####-                                               
+                                               +####+.                                              
+                                              :******-                                              
+  .+**+++++++++*******************************#%%%%%%#********************************+++++++++++.  
+  ..::..::-----:..::::::::::::::::::::.......:.......:::::::.:::::::..::::::::::..................  
+      :-=========-.                                         -+=======:                              
+    .===+*#####*+==-.                                       +-*%###*=+=                             
+   .*-+###########==+:::::::. .:::::::.  .::::::::.:::::::. +-#@+-=%%-*: .::::::::.:::::::.         
+   +-+%###*=-=####%-=========+=====-==+=======-===+=========*:#@=  #@=+--+=+++====++====+=++.       
+  .*:%*##+    .##### .#%##%= -#%####%*:*-*%%###%%..-%%##%%*:%:#@#*#@#:**+=#%####%* .#%%#%+-*.       
+  .*:%*##*.   .#*### .%@=-=::%@-..:*@#..#@+...=@%. =@%:+:%@-+-#@*==*%%---@%-..:#@* .#@*-+=*.        
+   ===%####+=+####%-:.%@:*=+-@#    -@# .@@.   .%%. =@*:@:*@-+-#@=   +@* =@#    =@* .#@-*=:.----.    
+   .+==###########-=#:%@:*:*:#@+::-#@*.:*@*:::*@%. =@*:%:#@-+-#@*-=+%@==-%@+::=%@* .#@-+::*=++=+.   
+    .===+**###**==+-*:*#:*.=*:+#%##*@*:#-+#%##*##..-#+:@:+#-+-+#####*=+*+=*%%##*#+..*#-*:-*-%#:#.   
+      .-=========:. -=====.*:=+:.. =@*-+-=========+===+=====++========: :=========++===+..=+==+-    
+         .......     ....  ===%%*+*%#-*:  ........ .... .... .......      .............    ....     
+                           .=+=++*+==+-                                                             
+                             .:-----:.                                                              
+                                                                                                    
+                                                                                                    `.split("\n");
+  const asciiDelays = [569,541,515,490,466,443,421,401,381,363,345,328,312,297,282,268,255,243,231,220,209,199,189,180,171,163,155,147,140,133,127,120,114,109,104,98,94,89,85,81,77,73,69,66,63,60,57,54,51,49,46,44,42,40,38,36,34];
+  const celebrationLines = ["IN CELEBRATION OF", "20 YEARS OF", "OrganBar"];
+  const futureLine = "THE FUTURE WAS ALWAYS ANALOG";
+  const finalDate = "7월 xx일";
+
+  const timings = {
+    dots: 3000,
+    android: 5000,
+    celebration: 5000,
+    future: 5000
+  };
+
+  function playDotsScene() {
+    consoleEl.innerHTML = "";
+    const row = document.createElement("div");
+    row.classList.add("large");
+    consoleEl.appendChild(row);
+    let idx = 0;
+    const dots = [".", ".", ".", ".", ".", "."];
+    const interval = setInterval(() => {
+      if (idx >= dots.length) {
+        clearInterval(interval);
+        setTimeout(playAndroidScene, 500);
+        return;
+      }
+      row.textContent += dots[idx++] + " ";
+    }, timings.dots / dots.length);
+  }
+
+  function playAndroidScene() {
+    consoleEl.innerHTML = "";
+    const lineEl = document.createElement("div");
+    lineEl.classList.add("large");
+    consoleEl.appendChild(lineEl);
+    let i = 0;
+    function typeChar() {
+      if (i < androidLine.length) {
+        const char = androidLine[i++];
+        lineEl.textContent += char;
+        const delay = 50 + Math.random() * 100;
+        setTimeout(typeChar, delay);
+      } else {
+        setTimeout(playAsciiScene, 1000);
+      }
+    }
+    typeChar();
+  }
+
+  function playAsciiScene() {
+    consoleEl.innerHTML = "";
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("ascii");
+    consoleEl.appendChild(wrapper);
+    let i = 0;
+    function showLine() {
+      if (i >= asciiArtLines.length) {
+        setTimeout(playCelebrationScene, 1000);
+        return;
+      }
+      const line = document.createElement("div");
+      line.textContent = asciiArtLines[i];
+      wrapper.appendChild(line);
+      setTimeout(showLine, asciiDelays[i++]);
+    }
+    showLine();
+  }
+
+  function playCelebrationScene() {
+    consoleEl.innerHTML = "";
+    let i = 0;
+    const delay = timings.celebration / celebrationLines.length;
+    function showLine() {
+      if (i >= celebrationLines.length) {
+        setTimeout(playFutureScene, 1000);
+        return;
+      }
+      const line = document.createElement("div");
+      line.classList.add("large");
+      line.textContent = celebrationLines[i++];
+      consoleEl.appendChild(line);
+      setTimeout(showLine, delay);
+    }
+    showLine();
+  }
+
+  function playFutureScene() {
+    consoleEl.innerHTML = "";
+    const lineEl = document.createElement("div");
+    lineEl.classList.add("large");
+    consoleEl.appendChild(lineEl);
+    let i = 0;
+    function typeChar() {
+      if (i < futureLine.length) {
+        lineEl.textContent += futureLine[i++];
+        const delay = 50 + Math.random() * 100;
+        setTimeout(typeChar, delay);
+      } else {
+        lineEl.classList.add("flash");
+        setTimeout(() => {
+          consoleEl.innerHTML = "";
+          playFinalScene();
+        }, 1000);
+      }
+    }
+    typeChar();
+  }
+
+  function playFinalScene() {
+    const line = document.createElement("div");
+    line.classList.add("large");
+    line.textContent = finalDate;
+    consoleEl.appendChild(line);
+  }
+
+  playDotsScene();
+</script>
+</body>
+</html>
