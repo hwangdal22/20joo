@@ -165,6 +165,7 @@
       }
       const line = document.createElement("div");
       line.textContent = asciiArtLines[i];
+      if (i >= 91 && i <= 95) line.classList.add("red");
       wrapper.appendChild(line);
       setTimeout(showLine, asciiDelays[i++]);
     }
