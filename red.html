@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OrganBar 20 Years</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF7F;
+      font-family: monospace;
+      white-space: pre;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    #console {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .center {
+      text-align: center;
+    }
+    .large {
+      font-size: 24px;
+    }
+    .ascii {
+      font-size: 12px;
+      line-height: 1.1em;
+    }
+    .flash {
+      animation: flash 0.2s 2 alternate;
+    }
+    .red {
+      color: red;
+    }
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+<div id="console" class="center"></div>
+
+<script>
+  const consoleEl = document.getElementById("console");
+
+  const androidLine = "Do androids dream of electric sheep?";
+  const asciiArtLines = `...`.split("\n"); // 생략: 기존 긴 ASCII 아트 줄들
+
+  const asciiDelays = [...]; // 생략: 기존 딜레이 배열
+
+  const celebrationLines = ["IN CELEBRATION OF", "20 YEARS OF", "OrganBar"];
+  const futureLine = "THE FUTURE WAS ALWAYS ANALOG";
+  const futureLineKr = "미래는 언제나 아날로그였다";
+  const finalDate = "7월 xx일";
+
+  const timings = {
+    dots: 3000,
+    android: 5000,
+    celebration: 5000
+  };
+
+  function playDotsScene() {
+    consoleEl.innerHTML = "";
+    const row = document.createElement("div");
+    row.classList.add("large");
+    consoleEl.appendChild(row);
+    let idx = 0;
+    const dots = [".", ".", ".", ".", ".", "."];
+    const interval = setInterval(() => {
+      if (idx >= dots.length) {
+        clearInterval(interval);
+        setTimeout(playAndroidScene, 500);
+        return;
+      }
+      row.textContent += dots[idx++] + " ";
+    }, timings.dots / dots.length);
+  }
+
+  function playAndroidScene() {
+    consoleEl.innerHTML = "";
+    const lineEl = document.createElement("div");
+    lineEl.classList.add("large");
+    consoleEl.appendChild(lineEl);
+    let i = 0;
+    function typeChar() {
+      if (i < androidLine.length) {
+        const char = androidLine[i++];
+        lineEl.textContent += char;
+        const delay = 50 + Math.random() * 100;
+        setTimeout(typeChar, delay);
+      } else {
+        setTimeout(playAsciiScene, 1000);
+      }
+    }
+    typeChar();
+  }
+
+  function playAsciiScene() {
+    consoleEl.innerHTML = "";
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("ascii");
+    consoleEl.appendChild(wrapper);
+    let i = 0;
+    function showLine() {
+      if (i >= asciiArtLines.length) {
+        setTimeout(playCelebrationScene, 1000);
+        return;
+      }
+      const line = document.createElement("div");
+      line.textContent = asciiArtLines[i];
+      if (i >= 91 && i <= 95) line.classList.add("red"); // 빨간색 처리 구간
+      wrapper.appendChild(line);
+      setTimeout(showLine, asciiDelays[i++]);
+    }
+    showLine();
+  }
+
+  function playCelebrationScene() {
+    consoleEl.innerHTML = "";
+    let i = 0;
+    const delay = timings.celebration / celebrationLines.length;
+    function showLine() {
+      if (i >= celebrationLines.length) {
+        setTimeout(playFutureScene, 1000);
+        return;
+      }
+      const line = document.createElement("div");
+      line.classList.add("large");
+      line.textContent = celebrationLines[i++];
+      consoleEl.appendChild(line);
+      setTimeout(showLine, delay);
+    }
+    showLine();
+  }
+
+  function playFutureScene() {
+    consoleEl.innerHTML = "";
+    const engEl = document.createElement("div");
+    engEl.classList.add("large");
+    const krEl = document.createElement("div");
+    krEl.classList.add("large");
+    consoleEl.appendChild(engEl);
+    consoleEl.appendChild(krEl);
+
+    let i = 0;
+    let j = 0;
+
+    function typeEngChar() {
+      if (i < futureLine.length) {
+        engEl.textContent += futureLine[i++];
+        const delay = 50 + Math.random() * 100;
+        setTimeout(typeEngChar, delay);
+      }
+    }
+
+    function typeKrChar() {
+      if (j < futureLineKr.length) {
+        krEl.textContent += futureLineKr[j++];
+        const delay = 70 + Math.random() * 100;
+        setTimeout(typeKrChar, delay);
+      }
+    }
+
+    typeEngChar();
+    setTimeout(() => {
+      typeKrChar();
+    }, 960);
+
+    setTimeout(() => {
+      engEl.classList.add("flash");
+      krEl.classList.add("flash");
+      setTimeout(() => {
+        consoleEl.innerHTML = "";
+        playFinalScene();
+      }, 1000);
+    }, 10000);
+  }
+
+  function playFinalScene() {
+    const line = document.createElement("div");
+    line.classList.add("large");
+    line.textContent = finalDate;
+    consoleEl.appendChild(line);
+  }
+
+  playDotsScene();
+</script>
+</body>
+</html>
